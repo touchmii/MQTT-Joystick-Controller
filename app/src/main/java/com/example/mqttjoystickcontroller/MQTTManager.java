@@ -27,7 +27,7 @@ public class MQTTManager {
      * @param controllerActivity the activity where everything happens
      */
     public MQTTManager(ControllerActivity controllerActivity){
-        this.userBrokerAddress  = "mqtt.eclipse.org";
+        this.userBrokerAddress  = "lvsrobot.cn";
         Context cntx            = controllerActivity.getApplicationContext();
         String  address         = this.PROT + this.userBrokerAddress + this.PORT;
         this.mqttClient         = new MqttAndroidClient(cntx,address,"AndroidMqttController");

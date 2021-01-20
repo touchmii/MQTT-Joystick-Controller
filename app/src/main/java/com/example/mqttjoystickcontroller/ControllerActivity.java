@@ -29,8 +29,10 @@ public class ControllerActivity extends Activity {
     private EditText brokerAddress;
     private EditText topic;
     private TextView connectionStatus;
-    private EditText username;
-    private EditText password;
+//    private EditText username;
+//    private EditText password;
+    private Button liftupButton;
+    private Button liftdownButton;
 
     protected MQTTManager mqttManager;
     private JoystickClass joystickClass;
@@ -50,8 +52,11 @@ public class ControllerActivity extends Activity {
         this.brokerAddress  = (EditText) findViewById(R.id.brokerText);
         this.topic          = (EditText) findViewById(R.id.topicText);
         this.connectionStatus = (TextView) findViewById(R.id.connectionStatus);
-        this.username       = (EditText) findViewById(R.id.username);
-        this.password       = (EditText) findViewById(R.id.password);
+//        this.username       = (EditText) findViewById(R.id.username);
+//        this.password       = (EditText) findViewById(R.id.password);
+
+        this.liftupButton   = (Button) findViewById(R.id.liftupButton);
+        this.liftdownButton = (Button) findViewById(R.id.liftdownButton);
 
         this.mqttManager    = new MQTTManager(this.brokerAddress.getText().toString(),this);
         this.joystickClass  = new JoystickClass(this);
@@ -69,10 +74,10 @@ public class ControllerActivity extends Activity {
                     mqttManager = new MQTTManager(activity);
                     activity.brokerAddress.setText(mqttManager.getUserBrokerAddress());
                 }
-                if (!activity.username.getText().toString().isEmpty() && !activity.password.getText().toString().isEmpty()){
-                    mqttManager.getMqttConnectOptions().setUserName(getUsername());
-                    mqttManager.getMqttConnectOptions().setPassword(getPassword().toCharArray());
-                }
+//                if (!activity.username.getText().toString().isEmpty() && !activity.password.getText().toString().isEmpty()){
+//                    mqttManager.getMqttConnectOptions().setUserName(getUsername());
+//                    mqttManager.getMqttConnectOptions().setPassword(getPassword().toCharArray());
+//                }
                 try {
                     mqttManager.getMqttClient().connect(mqttManager.getMqttConnectOptions(), null, new IMqttActionListener() {
                         @Override
@@ -101,23 +106,36 @@ public class ControllerActivity extends Activity {
                 mqttManager.sendMessage("STOP","STOP");
             }
         });
+
+        this.liftupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mqttManager.sendMessage("up", "/home/car/lift");
+            }
+        });
+        this.liftdownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mqttManager.sendMessage("down", "/home/car/lift");
+            }
+        });
     }
 
     /**
      *
      * @return the text in the username field
      */
-    public String getUsername(){
-        return this.username.getText().toString();
-    }
+//    public String getUsername(){
+//        return this.username.getText().toString();
+//    }
 
     /**
      *
      * @return the password in the password field
      */
-    public String getPassword(){
-        return this.password.getText().toString();
-    }
+//    public String getPassword(){
+//        return this.password.getText().toString();
+//    }
 
     /**
      * Getter of the MqttManager object

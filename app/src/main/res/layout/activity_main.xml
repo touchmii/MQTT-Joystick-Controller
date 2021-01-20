@@ -114,7 +114,8 @@
         android:layout_toRightOf="@+id/emergencyButton"
         android:ems="10"
         android:hint="Topic"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="/home/car" />
 
     <Button
         android:id="@+id/connectButton"
@@ -152,26 +153,22 @@
         android:layout_centerHorizontal="true"
         android:text="STOP" />
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="120dp"
+    <Button
+        android:id="@+id/liftupButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/password"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="13dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="127dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="98dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:layout_marginTop="112dp"
+        android:text="上升" />
+
+    <Button
+        android:id="@+id/liftdownButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="198dp"
+        android:text="下降" />
 
 </RelativeLayout>
